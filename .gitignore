@@ -14,5 +14,5 @@ build/
 *.egg-info/
 
 .vscode/
-
+.cache/
 poetry.lock
