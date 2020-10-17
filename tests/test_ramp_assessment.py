@@ -1,5 +1,8 @@
-from ramp_assessment import __version__
+from ramp_assessment import app
 
+app.testing = True
+client = app.test_client()
 
-def test_version():
-    assert __version__ == '0.1.0'
+def test_index():
+    response = client.get('/')
+    assert b"Hello, World!" in response.data
