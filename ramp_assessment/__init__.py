@@ -1,14 +1,12 @@
 __version__ = '0.1.0'
 
-from flask import Flask, jsonify, request
+from flask import Flask
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return 'Hello, World!'
+    from . import multiply
+    app.register_blueprint(multiply.bp)
+    app.add_url_rule('/', endpoint="index") # Might not need this
 
-
-@app.route('/multiply', methods=["POST"])
-def multiply():
-    return jsonify(request.get_json(force=True))
+    return app
