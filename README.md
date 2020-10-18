@@ -38,7 +38,7 @@ Clone the repository to a directory of your choice and navigate to the cloned di
 cd ramp-assessment
 ```
 
-2. Activate virtual environment with `poetry shell`
+2. Create a new `poetry shell`
 
 Instantiate a new virtual environment in the `ramp-assessment` directory by creating a new shell with:
 
@@ -60,7 +60,13 @@ export FLASK_APP=ramp_assessment
 poetry run flask run
 ```
 Once up and running, the app server will be accessible at:
- http://127.0.0.1:5000/
+ http://127.0.0.1:5000/. Use `Ctrl-C` to quit the server
+
+5. Exit the `poetry shell`
+Exit the poetry shell and virtual environment using the following command:
+```bash
+exit
+```
 
 ### Using the API
 
