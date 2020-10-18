@@ -16,10 +16,10 @@ class InputData:
     def __init__(self, input_data):
         self.input_data = input_data
         self.validate()
-        self._input_list = input_data["input"].split(",")
+        self._input_vector = input_data["input"].split(",")
 
     def to_np_float_array(self):
-        float_array = to_float_array(self._input_list)
+        float_array = to_float_array(self._input_vector)
         return np.array(float_array)
 
     def validate(self):
@@ -47,5 +47,5 @@ class InputData:
             raise InvalidInputArray("Invalid request body: Provided 'input' array contains {} decimal values. Expected 7 comma-separated decimal values.".format(length))
 
     @property
-    def input_list(self):
-        return self._input_list
+    def input_vector(self):
+        return self._input_vector

@@ -5,8 +5,8 @@ import pytest
 def test_input_data():
     input_data = InputData({"input": "0.1,0.9,0.123,0.99,0.5,1.0,0"})
 
-    assert len(input_data.input_list) == 7
-    assert input_data.input_list == ['0.1','0.9','0.123','0.99','0.5','1.0','0']
+    assert len(input_data.input_vector) == 7
+    assert input_data.input_vector == ['0.1','0.9','0.123','0.99','0.5','1.0','0']
 
 def test_input_data_validate_empty_json():
     with pytest.raises(InvalidInputArray):
