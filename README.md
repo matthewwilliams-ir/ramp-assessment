@@ -48,7 +48,7 @@ cd ramp_assessment
 
 2. Activate virtual environment with `poetry shell`
 
-Instantiate a new virtual in the `ramp_assessment` directory by creating a new shell with:
+Instantiate a new virtual environment in the `ramp_assessment` directory by creating a new shell with:
 
 ```bash
 poetry shell
