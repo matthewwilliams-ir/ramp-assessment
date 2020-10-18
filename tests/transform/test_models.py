@@ -33,6 +33,16 @@ def test_input_data_validate_length():
         input_data = InputData({"input": "5.0,6.1,3.0"})
         input_data.validate()
 
+def test_input_data_validate_decimal_less_than_zero():
+    with pytest.raises(InvalidInputArray):
+        input_data = InputData({"input": "-0.1,-0.9,0.123,0.99,0.5,1.0,0"})
+        input_data.validate()
+
+def test_input_data_validate_decimal_greater_than_one():
+    with pytest.raises(InvalidInputArray):
+        input_data = InputData({"input": "5.1,-0.9,0.123,0.99,0.5,1.0,0"})
+        input_data.validate()
+
 def test_input_data_to_numpy_float_array():
     input_data = InputData({"input": "0.1,0.9,0.123,0.99,0.5,1.0,0"})
 

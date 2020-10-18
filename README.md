@@ -184,9 +184,9 @@ Perform transformations on an existing 3x7 dataframe by supplying an input vecto
 Multiply the existing 3x7 dataframe by an input vector specified as the payload.
 
 **Payload**
-| Attribute | Value                                                   |
-|-----------|---------------------------------------------------------|
-| input     | A string consisting of 7 comma-separated decimal values |
+| Attribute | Value                                                                                |
+|-----------|--------------------------------------------------------------------------------------|
+| input     | A string consisting of 7 comma-separated decimal values between and including 0 to 1 |
 
 **Content-Type**: `application/json`
 
@@ -196,7 +196,7 @@ Multiply the existing 3x7 dataframe by an input vector specified as the payload.
 ```
 
 ### Project Assumptions
-* The provided input will always be a list of 7 comma-separated decimal values (I've implemented validation to ensure this)
+* The provided input will always be a list of 7 comma-separated decimal values between and including 0 to 1
 * The original weekly results will remain constant:
 ```
 1,1,1,1,1,1,1

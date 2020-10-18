@@ -47,3 +47,17 @@ def test_multiply_length(client):
 
     assert response.status_code == 400
     assert b"Expected 7 comma-separated decimal values" in response.data
+
+def test_multiply_decimal_less_than_zero(client):
+    input_data = '{"input": "-0.1,0.9,0.123,0.99,0.5,1.0,0"}'
+    response = client.post('/transform/multiply', data=input_data)
+
+    assert response.status_code == 400
+    assert b"Provided 'input' array contains decimal values less than 0 or greater than 1" in response.data
+
+def test_multiply_decimal_greater_than_one(client):
+    input_data = '{"input": "12.1,0.9,0.123,0.99,0.5,1.0,0"}'
+    response = client.post('/transform/multiply', data=input_data)
+
+    assert response.status_code == 400
+    assert b"Provided 'input' array contains decimal values less than 0 or greater than 1" in response.data

@@ -44,7 +44,10 @@ class InputData:
 
         length = len(float_array)
         if length != 7:
-            raise InvalidInputArray("Invalid request body: Provided 'input' array contains {} decimal values. Expected 7 comma-separated decimal values.".format(length))
+            raise InvalidInputArray("Invalid request body: Provided 'input' array contains {} decimal values. Expected 7 comma-separated decimal values between and including 0 to 1.".format(length))
+
+        if any(i < 0 or i > 1 for i in float_array):
+            raise InvalidInputArray("Invalid request body: Provided 'input' array contains decimal values less than 0 or greater than 1. Expected 7 comma-separated decimal values between and including 0 to 1.")
 
     @property
     def input_vector(self):
