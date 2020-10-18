@@ -6,10 +6,12 @@ def test_multiply(client):
     assert response.status_code == 200
     assert response.content_type == 'application/json'
     assert isinstance(response.json, dict)
-    assert {"Week 1", "Week 2", "Week 3"}.issubset(set(response.json.keys()))
-    assert {"1": 0.1,"2": 0.9,"3": 0.123,"4": 0.99,"5": 0.5,"6": 1.0,"7": 0.0} == response.json["Week 1"]
-    assert {"1": 0.2,"2": 1.8,"3": 0.246,"4": 1.98,"5": 1.0,"6": 2.0,"7": 0.0} == response.json["Week 2"]
-    assert {"1": 0.3,"2": 2.7,"3": 0.369,"4": 2.97,"5": 1.5,"6": 3.0,"7": 0.0} == response.json["Week 3"]
+    assert {"original_results", "modified_results"}.issubset(set(response.json.keys()))
+    modified_results_json = response.json["modified_results"]
+    assert {"week_1", "week_2", "week_3"}.issubset(set(modified_results_json.keys()))
+    assert {"1": 0.1,"2": 0.9,"3": 0.123,"4": 0.99,"5": 0.5,"6": 1.0,"7": 0.0} == modified_results_json["week_1"]
+    assert {"1": 0.2,"2": 1.8,"3": 0.246,"4": 1.98,"5": 1.0,"6": 2.0,"7": 0.0} == modified_results_json["week_2"]
+    assert {"1": 0.3,"2": 2.7,"3": 0.369,"4": 2.97,"5": 1.5,"6": 3.0,"7": 0.0} == modified_results_json["week_3"]
 
 def test_multiply_not_json(client):
     input_data = '{/'

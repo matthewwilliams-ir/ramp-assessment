@@ -11,9 +11,12 @@ service = TransformService()
 @transform.route('/multiply', methods=["POST"])
 def multiply():
     data = request.get_json(force=True)
-    result = service.multiply(data)
-    response = json.loads(result)
-    return response
+    df = service.get_original_results_df()
+    result = service.multiply(data, df)
+    
+    original_json = json.loads(df.to_json())
+    modified_json = json.loads(result)
+    return {"original_results": original_json, "modified_results": modified_json}
 
 @transform.errorhandler(InvalidInputArray)
 def handle_invalid_input(error):

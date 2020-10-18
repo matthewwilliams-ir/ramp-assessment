@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 original_results_df = pd.DataFrame(
-    {"Week 1": [1,1,1,1,1,1,1],"Week 2": [2,2,2,2,2,2,2],"Week 3": [3,3,3,3,3,3,3]}, 
+    {"week_1": [1,1,1,1,1,1,1], "week_2": [2,2,2,2,2,2,2], "week_3": [3,3,3,3,3,3,3]}, 
     index=[1,2,3,4,5,6,7],
     dtype="float64", 
     copy=True
