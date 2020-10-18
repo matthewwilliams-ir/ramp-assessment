@@ -2,20 +2,12 @@
 
 > A simple Flask API that transforms a 3x7 dataframe by multiplying it by an input vector
 
-* [Project Assumptions](#project-assumptions)
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Using the API](#using-the-api)
 * [Running Unit Tests](#running-unit-tests)
-
-### Project Assumptions
-* The provided input will always be a list of 7 comma-separated decimal values (I've implemented validation to ensure this)
-* The original weekly results will remain the same through out:
-```
-1,1,1,1,1,1,1
-2,2,2,2,2,2,2
-3,3,3,3,3,3,3
-``` 
+* [API Reference](#api-reference)
+* [Project Assumptions](#project-assumptions)
 
 ### Requirements
 * Python >= 3.7
@@ -175,3 +167,35 @@ poetry run coverage report -m
 # OR
 poetry run coverage html
 ```
+
+### API Reference
+
+#### Transform
+
+Perform transformations on an existing 3x7 dataframe by supplying an input vector as the payload.
+
+##### POST /transform/multiply
+Multiply the existing 3x7 dataframe by an input vector specified as the payload.
+
+**Payload**
+| Attribute | Value                                                   |
+|-----------|---------------------------------------------------------|
+| input     | A string consisting of 7 comma-separated decimal values |
+
+**Content-Type**: `application/json`
+
+**Example**:
+```json
+{"input": "0.1,0.9,0.123,0.99,0.5,1.0,0.0"}
+```
+
+### Project Assumptions
+* The provided input will always be a list of 7 comma-separated decimal values (I've implemented validation to ensure this)
+* The original weekly results will remain constant:
+```
+1,1,1,1,1,1,1
+2,2,2,2,2,2,2
+3,3,3,3,3,3,3
+``` 
+* The expected API response doesn't have to match the example output exactly. 
+In my case, the API responds with a JSON object containing the original and modified results.
