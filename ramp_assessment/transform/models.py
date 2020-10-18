@@ -23,23 +23,28 @@ class InputData:
         return np.array(float_array)
 
     def validate(self):
+        example_input = '{"input": "0.1,0.9,0.123,0.99,0.5,1.0,0"}'
+
         if not self.input_data:
-            raise InvalidInputArray("Expected json object with 'input' attribute")
+            raise InvalidInputArray("Invalid request body: Expected JSON object with string 'input' attribute. e.g. {}".format(example_input))
         
         if "input" not in self.input_data.keys():
-            raise InvalidInputArray("Missing 'input' attribute in provided request body")
+            raise InvalidInputArray("Invalid request body: Missing 'input' attribute. e.g. {}".format(example_input))
 
         input_str = self.input_data["input"]
         if not isinstance(input_str, str):
-            raise InvalidInputArray("Expected 'input' attribute of type 'string'")
+            raise InvalidInputArray("Invalid request body: Expected 'input' attribute of type 'string'. e.g. {}".format(example_input))
 
+        input_list = input_str.split(",")
+        float_array = []
         try:
-            input_list = input_str.split(",")
             float_array = to_float_array(input_list)
-            if len(float_array) != 7:
-                raise InvalidInputArray("Provided 'input' array contains {} decimal values. Only 7 comma-separated  decimal values should be provided.".format(len(float_array)))
         except Exception:
-            raise InvalidInputArray("Provide 'input' attribute contains unexpected characters. The 'input' string should contain comma-separated decimal values only.")
+            raise InvalidInputArray("Invalid request body: Provide 'input' attribute contains unexpected characters. The 'input' string should contain comma-separated decimal values only.")
+
+        length = len(float_array)
+        if length != 7:
+            raise InvalidInputArray("Invalid request body: Provided 'input' array contains {} decimal values. Expected 7 comma-separated decimal values.".format(length))
 
     @property
     def input_list(self):
