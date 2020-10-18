@@ -1,6 +1,6 @@
 import pytest
 from ramp_assessment import create_app
-from ramp_assessment.multiply.service import MultiplyService
+from ramp_assessment.transform.service import TransformService
 
 @pytest.fixture
 def app():
@@ -12,4 +12,4 @@ def client(app):
 
 @pytest.fixture
 def service():
-    return MultiplyService()
+    return TransformService()

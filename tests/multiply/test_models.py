@@ -1,4 +1,4 @@
-from ramp_assessment.multiply.models import InputVector
+from ramp_assessment.transform.models import InputVector
 
 def test_input_vector():
     input_str = "0.1,0.9,0.123,0.99,0.5,1.0,0"

@@ -1,11 +1,11 @@
-from ramp_assessment.multiply.service import MultiplyService
+from ramp_assessment.transform.service import TransformService
 
 import json
 
-def test_transform(service):
+def test_multiply(service):
     input_str = "0.1,0.9,0.123,0.99,0.5,1.0,0"
 
-    result_json = service.transform(input_str)
+    result_json = service.multiply(input_str)
 
     actual_json = json.loads(result_json)
     assert {"Week 1", "Week 2", "Week 3"}.issubset(set(actual_json.keys()))
