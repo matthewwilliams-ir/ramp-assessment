@@ -35,12 +35,12 @@ If you see something like Poetry 0.12.0 then you are ready to use Poetry
 Clone the repository to a directory of your choice and navigate to the cloned directory:
 
 ```bash
-cd ramp_assessment
+cd ramp-assessment
 ```
 
 2. Activate virtual environment with `poetry shell`
 
-Instantiate a new virtual environment in the `ramp_assessment` directory by creating a new shell with:
+Instantiate a new virtual environment in the `ramp-assessment` directory by creating a new shell with:
 
 ```bash
 poetry shell
