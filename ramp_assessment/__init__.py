@@ -5,8 +5,8 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
 
-    from . import multiply
-    app.register_blueprint(multiply.bp)
+    from .multiply import views
+    app.register_blueprint(views.bp)
     app.add_url_rule('/', endpoint="index") # Might not need this
 
     return app

@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from .service import transform
 
 bp = Blueprint("multiply", __name__)
 
@@ -8,4 +9,8 @@ def index():
 
 @bp.route('/multiply', methods=["POST"])
 def multiply():
-    return jsonify(request.get_json(force=True))
+
+    data = request.get_json(force=True)
+    # json = jsonify(data)
+
+    return transform(data["input"])
