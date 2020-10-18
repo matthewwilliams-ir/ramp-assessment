@@ -84,6 +84,8 @@ Request Body:
 {"input": "0.1,0.9,0.123,0.99,0.5,1.0,0.0"}
 ```
 
+> The input data is assumed to always be a comma-separated list of 7 decimal values. The API will respond with the appropriate HTTP error if not.
+
 Example using `curl`:
 ```bash
 curl --location --request POST 'localhost:5000/transform/multiply' \
