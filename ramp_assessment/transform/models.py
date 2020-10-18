@@ -1,4 +1,5 @@
 from ..exception import InvalidInputArray
+from ..util import to_float_array
 
 import numpy as np
 import pandas as pd
@@ -12,21 +13,33 @@ original_results_df = pd.DataFrame(
 
 class InputData:
 
-    def __init__(self, input_str):
-        self.validate(input_str)
-        self._input_list = input_str.split(",")
+    def __init__(self, input_data):
+        self.input_data = input_data
+        self.validate()
+        self._input_list = input_data["input"].split(",")
 
     def to_np_float_array(self):
-        float_array = list(map(float, self._input_list))
+        float_array = to_float_array(self._input_list)
         return np.array(float_array)
 
-    def validate(self, input_str):
-        if not input_str:
-            raise InvalidInputArray("'input' attribute cannot be an empty string")
+    def validate(self):
+        if not self.input_data:
+            raise InvalidInputArray("Expected json object with 'input' attribute")
+        
+        if "input" not in self.input_data.keys():
+            raise InvalidInputArray("Missing 'input' attribute in provided request body")
+
+        input_str = self.input_data["input"]
+        if not isinstance(input_str, str):
+            raise InvalidInputArray("Expected 'input' attribute of type 'string'")
+
         try:
-            input_str.split(",")
-        except ValueError:
-            raise InvalidInputArray("Provided 'input' attribute is not a comma-separated decimal values string")
+            input_list = input_str.split(",")
+            float_array = to_float_array(input_list)
+            if len(float_array) != 7:
+                raise InvalidInputArray("Provided 'input' array contains {} decimal values. Only 7 comma-separated  decimal values should be provided.".format(len(float_array)))
+        except Exception:
+            raise InvalidInputArray("Provide 'input' attribute contains unexpected characters. The 'input' string should contain comma-separated decimal values only.")
 
     @property
     def input_list(self):

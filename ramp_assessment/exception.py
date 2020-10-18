@@ -11,5 +11,6 @@ class InvalidInputArray(Exception):
 
     def to_dict(self):
         rv = dict(self.payload or ())
+        rv['code'] = self.status_code
         rv['message'] = self.message
         return rv
