@@ -12,9 +12,12 @@ class InputVector:
 
     def __init__(self, input_str):
         # TODO: Validate input
-        self.input_list = input_str.split(",")
+        self._input_list = input_str.split(",")
 
     def to_numpy_float_array(self):
-        float_array = list(map(float, self.input_list))
+        float_array = list(map(float, self._input_list))
         return np.array(float_array)
 
+    @property
+    def input_list(self):
+        return self._input_list

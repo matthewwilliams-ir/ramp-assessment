@@ -1,16 +1,13 @@
 from flask import Blueprint, jsonify, request
-from .service import transform
+from .service import MultiplyService
+
+import json
 
 bp = Blueprint("multiply", __name__)
-
-@bp.route('/')
-def index():
-    return 'Hello, World!'
+service = MultiplyService()
 
 @bp.route('/multiply', methods=["POST"])
 def multiply():
-
     data = request.get_json(force=True)
-    # json = jsonify(data)
-
-    return transform(data["input"])
+    result = service.transform(data["input"])
+    return json.loads(result)
